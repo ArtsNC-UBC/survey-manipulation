@@ -41,31 +41,31 @@
               question: "Don't you agree that most people waste too much time on social media?",
               type: 'scale',
               options: ['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'],
-              manipulation: 'Leading Question',
-              explanation: 'The phrase "Don\'t you agree" presupposes agreement and makes disagreement feel confrontational.'
+              manipulation: 'Acquiescence Bias',
+              explanation: 'People are substantially more likely to agree with statements made in a question than disagree.'
             },
             {
               id: 'q2_loaded',
               question: "How much do you support reckless spending on unnecessary government programs?",
               type: 'scale',
               options: ['Not at all', 'A little', 'Somewhat', 'Very much', 'Extremely'],
-              manipulation: 'Loaded Language',
+              manipulation: 'Word Choice',
               explanation: '"Reckless" and "unnecessary" are emotionally charged words that bias the response.'
             },
             {
               id: 'q3_anchoring',
-              question: "Studies show some people spend over $5,000 per year on coffee. How much do you spend annually?",
-              type: 'number',
-              manipulation: 'Anchoring',
-              explanation: 'Starting with an extreme number ($5,000) makes your own spending seem more reasonable by comparison.'
+              question: "Replacing Canada's crumbling water and road infrastructure is estimated to cost $356.7 billion. How worried are you about the state of your municipal water system?",
+              type: 'scale',
+              options: ['Not worried', 'Slightly worried', 'Worried', 'Very worried', 'Extremely worried'],
+              manipulation: 'Availability and Context',
+              explanation: 'Presenting alarming context and large numbers before the question influences how worried you feel about your own water system, a topic you probably didn't have an opinion on before being asked.'
             },
             {
               id: 'q4_false_choice',
-              question: "Should we prioritize economic growth or completely destroy the environment?",
-              type: 'choice',
-              options: ['Economic growth', 'Destroy environment'],
-              manipulation: 'False Dichotomy',
-              explanation: 'Presents only two extreme options when many moderate positions exist.'
+              question: "Do you want to be rich and famous?",
+              type: 'yesno',
+              manipulation: 'Double-Barrelled',
+              explanation: 'This is asking two questions at the same time; some people may wish to be one, but not the other.'
             },
             {
               id: 'q5_framing_negative',
@@ -79,17 +79,31 @@
           const survey2Questions = [
             {
               id: 'q1_neutral',
-              question: "How would you describe your social media usage?",
+              question: "Are you concerned about the amount of time you spend on social media?",
               type: 'scale',
-              options: ['Very Low', 'Low', 'Moderate', 'High', 'Very High'],
+              options: ['Not concerned', 'Slightly concerned', 'Concerned', 'Very concerned', 'Addicted'],
               compareWith: 'q1_leading'
             },
             {
               id: 'q2_neutral',
-              question: "How much do you support government social programs?",
+              question: "How much do you support government social programs such as education or health care?",
               type: 'scale',
               options: ['Not at all', 'A little', 'Somewhat', 'Very much', 'Extremely'],
               compareWith: 'q2_loaded'
+            },
+            {
+              id: 'q3_neutral',
+              question: "Are you satisfied with your current water and sewage service from your local town or city?",
+              type: 'scale',
+              options: ['Very dissatisfied', 'Dissatisfied', 'Neutral', 'Satisfied', 'Very satisfied'],
+              compareWith: 'q3_anchoring'
+            },
+            {
+              id: 'q4_neutral',
+              question: "Would you rather be rich or famous?",
+              type: 'choice',
+              options: ['Rich', 'Famous', 'Both'],
+              compareWith: 'q4_false_choice'
             },
             {
               id: 'q5_framing_positive',
@@ -320,6 +334,16 @@
                 label: 'Government Programs Question'
               },
               {
+                manipulated: 'q3_anchoring',
+                neutral: 'q3_neutral',
+                label: 'Water Infrastructure Question'
+              },
+              {
+                manipulated: 'q4_false_choice',
+                neutral: 'q4_neutral',
+                label: 'Rich and Famous Question'
+              },
+              {
                 manipulated: 'q5_framing_negative',
                 neutral: 'q5_framing_positive',
                 label: 'Job Policy Question'
@@ -385,23 +409,23 @@
                   <div className="space-y-4 text-slate-300">
                     <div className="flex gap-3">
                       <div className="text-amber-500 font-bold">1.</div>
-                      <p><strong className="text-white">Leading questions</strong> presuppose answers and make disagreement feel uncomfortable.</p>
+                      <p><strong className="text-white">Acquiescence Bias</strong>: People are substantially more likely to agree with statements made in a question than disagree.</p>
                     </div>
                     <div className="flex gap-3">
                       <div className="text-amber-500 font-bold">2.</div>
-                      <p><strong className="text-white">Loaded language</strong> uses emotional or biased words to push you toward a conclusion.</p>
+                      <p><strong className="text-white">Word Choice</strong>: Using emotional or biased words can push you toward a conclusion.</p>
                     </div>
                     <div className="flex gap-3">
                       <div className="text-amber-500 font-bold">3.</div>
-                      <p><strong className="text-white">Anchoring</strong> presents extreme numbers first to make other values seem more reasonable.</p>
+                      <p><strong className="text-white">Availability and Context</strong>: Presenting alarming information or large numbers before a question influences how you respond.</p>
                     </div>
                     <div className="flex gap-3">
                       <div className="text-amber-500 font-bold">4.</div>
-                      <p><strong className="text-white">False dichotomies</strong> limit choices to extremes, hiding moderate options.</p>
+                      <p><strong className="text-white">Double-Barrelled Questions</strong>: Asking two questions at once makes it impossible to give a clear answer to either one.</p>
                     </div>
                     <div className="flex gap-3">
                       <div className="text-amber-500 font-bold">5.</div>
-                      <p><strong className="text-white">Framing effects</strong> show the same information positively or negatively to influence decisions.</p>
+                      <p><strong className="text-white">Framing Effects</strong>: The same information presented positively or negatively can dramatically influence decisions.</p>
                     </div>
                   </div>
 
